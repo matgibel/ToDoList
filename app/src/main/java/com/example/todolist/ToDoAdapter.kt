@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.to_do_item.view.*
 
-class ToDoAdapter (val toDoList: List<ToDoMemo>) : RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder>(){
+class ToDoAdapter (val toDoList: ArrayList<ToDoMemo>) : RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder>(){
 
 
     private var items = toDoList

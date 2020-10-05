@@ -21,43 +21,51 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //Creation of AlertDialog Prompt (Built-in tool)
-        val dialog = AlertDialog.Builder(this)
-        //Inflating popuplayout and setting item to "dialogView
-        val dialogView = layoutInflater.inflate(R.layout.popuplayout,null)
-        //finding of edit text "et_enter_todo" and setting it to the value "et_input"
-        val et_input = dialogView.findViewById<EditText>(R.id.et_enter_todo)
 
-        // inflation of popuplayout that was set to dialogView and inputting
-        // into AlertDialog
-        dialog.setView(dialogView)
-        dialog.setCancelable(false)
-        dialog.setPositiveButton("Submit", { dialogInterface : DialogInterface, i -> Int })
+        floatingActionButton.setOnClickListener {
 
-        //Creation of dialog and value stored in "customDialog"
-        val customDialog = dialog.create()
-        customDialog.show()
+            //Creation of AlertDialog Prompt (Built-in tool)
+            val dialog = AlertDialog.Builder(this)
+            //Inflating popuplayout and setting item to "dialogView
+            val dialogView = layoutInflater.inflate(R.layout.popuplayout,null)
+            //finding of edit text "et_enter_todo" and setting it to the value "et_input"
+            val et_input = dialogView.findViewById<EditText>(R.id.et_enter_todo)
 
-        //Addition of a clickable button (Button Positive) - setOnClickListener
-        customDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener{
+            // inflation of popuplayout that was set to dialogView and inputting
+            // into AlertDialog
+            dialog.setView(dialogView)
+            dialog.setCancelable(false)
+            dialog.setPositiveButton("Submit", { dialogInterface : DialogInterface, i -> Int })
 
-            if(et_input.text.length > 5){
-                Toast.makeText(baseContext, "Input Logged" , Toast.LENGTH_SHORT).show()
+            //Creation of dialog and value stored in "customDialog"
+            val customDialog = dialog.create()
+            customDialog.show()
 
-                var tmp = et_input.toString()
+            //Addition of a clickable button (Button Positive) - setOnClickListener
+            customDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener{
 
-                var tdm: ToDoMemo = ToDoMemo(tmp)
+                if(et_input.text.length > 5){
+                    Toast.makeText(baseContext, "Input Logged" , Toast.LENGTH_SHORT).show()
 
-                ToDoArray.add(tdm)
+                    var tmp = et_input.toString()
 
-                customDialog.dismiss()
+                    var tdm: ToDoMemo = ToDoMemo(tmp)
+
+                    ToDoArray.add(tdm)
+
+                    customDialog.dismiss()
+                }
+
+                else{
+                    Toast.makeText(baseContext , "Input Invalid", Toast.LENGTH_SHORT).show()
+                }
+
             }
 
-            else{
-                Toast.makeText(baseContext , "Input Invalid", Toast.LENGTH_SHORT).show()
-            }
 
         }
+
+
 
 
         //Place initRecyclerView
